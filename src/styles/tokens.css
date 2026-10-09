@@ -1,0 +1,84 @@
+/* Design tokens — Estilo E06 Aurora/Glass claro en azul (Agents v1.2) */
+:root {
+  --color-bg: #f5f8ff;
+  --color-bg-glow-1: #dbeafe;
+  --color-bg-glow-2: #e0f2fe;
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-strong: rgba(255, 255, 255, 0.88);
+  --color-surface-solid: #ffffff;
+  --color-text: #0b1b3a;
+  --color-text-body: #334155;
+  --color-text-muted: #475569;
+  --color-primary: #1d4ed8;
+  --color-primary-soft: #e8efff;
+  --color-primary-contrast: #ffffff;
+  --color-btn-dark: #0b1b3a;
+  --color-border: rgba(29, 78, 216, 0.14);
+  --color-gradient: linear-gradient(90deg, #1d4ed8, #0ea5e9);
+  --color-error: #b91c1c;
+  --color-error-soft: #fef2f2;
+  --color-disabled: #cbd5e1;
+  --color-disabled-text: #475569;
+  --color-media-stage: #1a1625;
+
+  --status-idea-fg: #475569;
+  --status-idea-bg: #eef2f7;
+  --status-proto-fg: #0369a1;
+  --status-proto-bg: #e0f2fe;
+  --status-dev-fg: #1d4ed8;
+  --status-dev-bg: #e8efff;
+  --status-done-fg: #15803d;
+  --status-done-bg: #dcfce7;
+
+  --font-heading: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-32: 2rem;
+  --fs-40: 2.5rem;
+  --fs-56: 3.5rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --section-space: 64px;
+
+  --layout-max: 1200px;
+  --gutter: 16px;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(11, 27, 58, 0.06);
+  --shadow-md: 0 12px 32px rgba(29, 78, 216, 0.1);
+
+  --blur-glass: blur(16px);
+  --focus-ring: 3px solid #1d4ed8;
+  --focus-offset: 3px;
+  --anchor-offset: 104px;
+
+  --motion-hover: 150ms;
+  --motion-fade: 200ms;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+    --section-space: 96px;
+  }
+}

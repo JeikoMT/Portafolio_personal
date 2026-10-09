@@ -1,0 +1,33 @@
+{
+  "profile": {
+    "name": "Jeiko Mendiguri",
+    "greeting": "Hola, soy",
+    "headline": "IT Recruiter & Talent Acquisition",
+    "gradientWord": "Talent Acquisition",
+    "navSubtitle": "Psicólogo organizacional",
+    "tagline": "Psicología, datos y tecnología aplicados a la selección de talento.",
+    "description": "Combino experiencia en reclutamiento de distintos sectores —con foco en perfiles TI— con conocimientos de bases de datos, análisis de información e inteligencia artificial. Me interesa convertir necesidades de selección en procesos más claros, medibles y eficientes.",
+    "about": [
+      "Soy psicólogo organizacional y profesional de Talent Acquisition con experiencia en procesos de reclutamiento y selección end to end para distintos sectores: entrevistas por competencias, assessment centers y pruebas psicométricas.",
+      "Hoy mi foco es IT Recruiting. En paralelo estudio Ciencia de Datos en ISIL y desarrollo proyectos que conectan recruiting, bases de datos e IA.",
+      "Mi objetivo es unir la comprensión de las personas con herramientas que ayuden a organizar la información, decidir mejor y optimizar el trabajo."
+    ],
+    "evolution": ["Psicología", "Recruiting", "IT Recruiting", "Data", "Tecnología"],
+    "stats": [
+      { "value": "4+", "label": "años en selección" },
+      { "value": "6", "label": "organizaciones" },
+      { "value": "5", "label": "sectores" }
+    ],
+    "sectors": ["Tecnología", "Retail y ferretería", "Gastronomía", "Educación", "Consultoría"],
+    "photo": "../assets/photo/foto-jeiko.webp",
+    "photoAlt": "Retrato de Jeiko Mendiguri, IT Recruiter",
+    "contact": {
+      "email": "jeikomt1997@gmail.com",
+      "phoneDisplay": "+51 948 331 981",
+      "phoneE164": "+51948331981",
+      "whatsappUrl": "https://wa.me/51948331981?text=Hola%20Jeiko%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar.",
+      "linkedinUrl": "https://www.linkedin.com/in/jeiko-mendiguri-tovar-812624232",
+      "location": "San Miguel, Lima"
+    }
+  }
+}

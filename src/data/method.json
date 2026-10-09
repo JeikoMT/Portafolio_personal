@@ -1,0 +1,7 @@
+[
+  { "id": "01", "step": "01", "title": "Entender", "description": "Aclaro la necesidad del negocio, el perfil, las condiciones y los criterios de éxito." },
+  { "id": "02", "step": "02", "title": "Diseñar el proceso", "description": "Defino etapas, fuentes de búsqueda y criterios de evaluación." },
+  { "id": "03", "step": "03", "title": "Ejecutar y evaluar", "description": "Hago sourcing, reviso perfiles, entrevisto y registro la información de forma ordenada." },
+  { "id": "04", "step": "04", "title": "Analizar", "description": "Reviso indicadores para detectar cuellos de botella y oportunidades." },
+  { "id": "05", "step": "05", "title": "Optimizar", "description": "Propongo mejoras y evalúo qué herramientas de datos o tecnología pueden ayudar." }
+]

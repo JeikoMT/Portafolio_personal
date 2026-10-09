@@ -1,0 +1,5 @@
+[
+  { "id": "es", "name": "Español", "level": "nativo" },
+  { "id": "en", "name": "Inglés", "level": "intermedio" },
+  { "id": "lsp", "name": "Lengua de señas peruana", "level": "certificada" }
+]

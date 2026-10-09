@@ -1,0 +1,140 @@
+---
+import Icon from './Icon.astro';
+import nav from '../data/navigation.json';
+
+interface Props {
+  variant?: 'home' | 'project' | 'events';
+  name: string;
+  subtitle: string;
+}
+const { variant = 'home', name, subtitle } = Astro.props;
+---
+<header class="navbar" data-navbar>
+  <nav class="navbar__bar glass" aria-label="Principal">
+    <a class="brand" href={nav.home.href} aria-label={`${name}, ${nav.home.label.toLowerCase()}`}>
+      <span class="brand__mark" aria-hidden="true">JM</span>
+      <span class="brand__text">
+        <span class="brand__name">{name}</span>
+        <span class="brand__sub">{subtitle}</span>
+      </span>
+    </a>
+
+    {variant === 'home' && (
+      <ul class="navbar__links">
+        {nav.links.map((l) => (
+          <li><a class="navlink" href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    )}
+
+    <div class="navbar__actions">
+      {variant === 'events' ? (
+        <a class="btn btn--dark btn--sm" href={nav.backHome.href}><Icon name="house" size={18} />{nav.backHome.label}</a>
+      ) : (
+        <a class="btn btn--dark btn--sm" href={nav.events.href}><Icon name="images" size={18} />{nav.events.label}</a>
+      )}
+      {variant === 'home' && (
+        <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-movil" data-menu-button data-label-open={nav.menu.open} data-label-close={nav.menu.close}>
+          <span data-icon-open><Icon name="menu" size={18} /></span>
+          <span data-icon-close hidden><Icon name="x" size={18} /></span>
+          <span data-menu-label>{nav.menu.open}</span>
+        </button>
+      )}
+    </div>
+  </nav>
+
+  {variant === 'home' && (
+    <div id="menu-movil" class="menu-panel" data-menu-panel hidden>
+      {nav.links.map((l) => (
+        <a class="menu-panel__link" href={l.href} data-menu-link>
+          <span>{l.label}</span><Icon name="arrow-right" size={18} />
+        </a>
+      ))}
+    </div>
+  )}
+</header>
+
+<style>
+  .navbar { position: sticky; top: 12px; z-index: 20; padding-inline: clamp(12px, 2vw, 32px); }
+  .navbar__bar {
+    max-width: var(--layout-max); margin: 12px auto 0; display: flex; align-items: center;
+    justify-content: space-between; gap: var(--space-4);
+    padding: 8px 8px 8px 10px; border-radius: var(--radius-pill); box-shadow: var(--shadow-md);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--color-text); text-decoration: none; }
+  .brand:hover { color: var(--color-text); }
+  .brand__mark {
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--color-btn-dark); color: var(--color-primary-contrast); font-weight: 700; font-size: var(--fs-16); letter-spacing: 0.02em;
+  }
+  .brand__text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand__name { font-weight: 700; font-size: var(--fs-16); }
+  .brand__sub { font-size: var(--fs-12); font-weight: 500; color: var(--color-text-muted); }
+
+  .navbar__links { display: none; align-items: center; gap: 2px; }
+  .navlink {
+    display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius-pill);
+    color: var(--color-text); text-decoration: none; font-size: var(--fs-14); font-weight: 500;
+    transition: background var(--motion-hover), color var(--motion-hover);
+  }
+  .navlink:hover { background: var(--color-primary-soft); color: var(--color-primary); }
+
+  .navbar__actions { display: flex; align-items: center; gap: var(--space-2); }
+  .menu-btn {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px;
+    border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface-solid);
+    color: var(--color-text); font: 600 var(--fs-14) var(--font-body); cursor: pointer;
+  }
+  .menu-btn [hidden] { display: none; }
+  .menu-btn span { display: inline-flex; }
+
+  .menu-panel {
+    max-width: var(--layout-max); margin: var(--space-2) auto 0; padding: var(--space-2);
+    background: var(--color-surface-solid); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  }
+  .menu-panel[hidden] { display: none; }
+  .menu-panel__link {
+    display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px;
+    border-radius: var(--radius-md); color: var(--color-text); text-decoration: none; font-size: var(--fs-16); font-weight: 600;
+  }
+  .menu-panel__link :global(svg) { color: var(--color-primary); }
+  .menu-panel__link:hover { background: var(--color-primary-soft); color: var(--color-primary); }
+
+  @media (min-width: 1024px) {
+    .navbar__links { display: flex; }
+    .menu-btn, .menu-panel { display: none; }
+  }
+  @media (max-width: 420px) {
+    .brand__sub { display: none; }
+  }
+</style>
+
+<script>
+  function init() {
+    const btn = document.querySelector<HTMLButtonElement>('[data-menu-button]');
+    const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+    if (!btn || !panel) return;
+    const label = btn.querySelector<HTMLElement>('[data-menu-label]')!;
+    const iconOpen = btn.querySelector<HTMLElement>('[data-icon-open]')!;
+    const iconClose = btn.querySelector<HTMLElement>('[data-icon-close]')!;
+
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      label.textContent = open ? btn.dataset.labelClose! : btn.dataset.labelOpen!;
+      iconOpen.hidden = open;
+      iconClose.hidden = !open;
+    };
+
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    panel.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        set(false);
+        btn.focus();
+      }
+    });
+  }
+  document.addEventListener('astro:page-load', init);
+</script>

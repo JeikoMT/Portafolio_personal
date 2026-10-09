@@ -1,0 +1,4 @@
+[
+  { "id": "ciencia-de-datos", "institution": "ISIL", "program": "Ciencia de Datos", "period": "Ago. 2025 – actualidad", "status": "En curso", "statusLabel": "En curso (remoto)", "order": 1 },
+  { "id": "psicologia", "institution": "Universidad Tecnológica del Perú", "program": "Psicología", "period": "2018–2024", "status": "Licenciado", "statusLabel": "Licenciado", "order": 2 }
+]

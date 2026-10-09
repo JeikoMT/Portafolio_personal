@@ -1,0 +1,22 @@
+[
+  {
+    "id": "mcp-arquitectura",
+    "title": "MCP: conecta la IA con tus datos y herramientas",
+    "summary": "Guía rápida en 11 diapositivas sobre el Model Context Protocol: arquitectura, primitivas y ejemplos.",
+    "date": "2026-09-23",
+    "dateLabel": "23 set. 2026",
+    "url": "https://www.linkedin.com/posts/jeiko-mendiguri-tovar-812624232_arquitectura-mcp-activity-7508556203359207424-K0PH",
+    "cover": "../../assets/posts/post-mcp-arquitectura.png",
+    "coverAlt": "Portada del carrusel: MCP, conecta la IA con tus datos y herramientas"
+  },
+  {
+    "id": "mcp-claude-desktop",
+    "title": "Conecta un MCP a tu agente de IA",
+    "summary": "Paso a paso en Claude Desktop: desde encontrar el servidor hasta usarlo en tu primer chat.",
+    "date": "2026-09-24",
+    "dateLabel": "24 set. 2026",
+    "url": "https://www.linkedin.com/posts/jeiko-mendiguri-tovar-812624232_conectando-mcp-a-agente-de-ia-activity-7508888672990048256-cXAV",
+    "cover": "../../assets/posts/post-mcp-claude-desktop.png",
+    "coverAlt": "Portada del carrusel: Conecta un MCP a tu agente de IA"
+  }
+]

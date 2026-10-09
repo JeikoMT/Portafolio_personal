@@ -1,0 +1,16 @@
+[
+  { "id": "growby", "company": "GrowBy", "role": "IT Recruiter", "start": "2026-04", "current": true, "periodLabel": "Abr. 2026 – actualidad", "sector": "Tecnología", "secondary": false, "order": 1,
+    "highlights": ["Selección de perfiles TI para clientes nacionales e internacionales", "Administración del ATS", "Seguimiento de time-to-fill y efectividad de fuentes", "Mentoring de 2 practicantes"] },
+  { "id": "canvia", "company": "Canvia", "role": "IT Recruiter", "start": "2025-07", "end": "2026-03", "current": false, "periodLabel": "Jul. 2025 – Mar. 2026", "sector": "Tecnología", "secondary": false, "order": 2,
+    "highlights": ["Selección TI end to end: kick-off, EMO, antecedentes y contratación", "Hunting en LinkedIn, Bumeran y Computrabajo", "Flujograma del proceso para capacitación"] },
+  { "id": "delibakery", "company": "Delibakery", "role": "Asistente de Recursos Humanos", "start": "2025-01", "end": "2025-04", "current": false, "periodLabel": "Ene. – Abr. 2025", "sector": "Gastronomía", "secondary": false, "order": 3,
+    "highlights": ["Assessment center para puestos administrativos", "Pruebas proyectivas y psicométricas", "Reclutamiento de cocina, salón y producción"] },
+  { "id": "manpower", "company": "Manpower Group", "role": "Auxiliar de Reclutamiento", "start": "2024-08", "end": "2024-12", "current": false, "periodLabel": "Ago. – Dic. 2024", "sector": "Retail y ferretería", "secondary": false, "order": 4,
+    "highlights": ["Base de más de 400 candidatos", "Ferias laborales municipales", "Contenido para difundir ofertas"] },
+  { "id": "innova", "company": "Innova Scientific", "role": "Auxiliar de RR. HH.", "start": "2022-11", "end": "2023-02", "current": false, "periodLabel": "Nov. 2022 – Feb. 2023", "sector": "Educación", "secondary": false, "order": 5,
+    "highlights": ["Más de 20 vacantes operativas, comerciales y administrativas", "Más de 30 pruebas aplicadas", "Inducción"] },
+  { "id": "ds-consultores", "company": "DS Consultores", "role": "Practicante de RR. HH.", "start": "2022-06", "end": "2022-11", "current": false, "periodLabel": "Jun. – Nov. 2022", "sector": "Consultoría", "secondary": false, "order": 6,
+    "highlights": ["Base de más de 600 candidatos", "Preselección curricular", "Más de 40 pruebas aplicadas"] },
+  { "id": "hospital-pnp", "company": "Hospital Central PNP Luis N. Sáenz", "role": "Practicante de Psicología Clínica", "start": "2023-08", "end": "2024-07", "current": false, "periodLabel": "Ago. 2023 – Jul. 2024", "sector": "Salud", "secondary": true, "order": 7,
+    "highlights": ["Neuropsicología, consulta externa y hospitalización; WISC, WAIS, Vineland, Neuropsi y MoCA"] }
+]

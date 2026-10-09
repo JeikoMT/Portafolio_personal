@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import nav from '../data/navigation.json';
+
+interface Props { linkedinUrl: string; backTo?: { label: string; href: string } }
+const { linkedinUrl, backTo } = Astro.props;
+---
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark" aria-hidden="true">JM</span>
+      <span class="footer__copy">{nav.footer.copyright}</span>
+    </div>
+    <div class="footer__links">
+      <a class="footer__link" href={linkedinUrl} target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={18} />LinkedIn</a>
+      {backTo ? (
+        <a class="footer__link" href={backTo.href}><Icon name="arrow-left" size={18} />{backTo.label}</a>
+      ) : (
+        <a class="footer__link" href="#inicio"><Icon name="arrow-up" size={18} />{nav.footer.backToTop}</a>
+      )}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { position: relative; z-index: 1; border-top: 1px solid var(--color-border); background: rgba(255, 255, 255, 0.6); }
+  .footer__inner {
+    max-width: calc(var(--layout-max) + 2 * var(--gutter)); margin: 0 auto; padding: var(--space-6) var(--gutter);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
+  }
+  .footer__brand { display: flex; align-items: center; gap: var(--space-3); }
+  .footer__mark {
+    width: 36px; height: 36px; border-radius: var(--radius-sm); display: grid; place-items: center;
+    background: var(--color-btn-dark); color: var(--color-primary-contrast); font-weight: 700; font-size: var(--fs-14);
+  }
+  .footer__copy { font-size: var(--fs-14); color: var(--color-text-muted); }
+  .footer__links { display: flex; align-items: center; gap: var(--space-1); }
+  .footer__link {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-pill);
+    font-size: var(--fs-14); font-weight: 600; color: var(--color-text); text-decoration: none;
+    transition: background var(--motion-hover), color var(--motion-hover);
+  }
+  .footer__link:hover { background: var(--color-primary-soft); color: var(--color-primary); }
+</style>

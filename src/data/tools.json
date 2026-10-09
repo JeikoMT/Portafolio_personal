@@ -1,0 +1,243 @@
+[
+  {
+    "id": "gestion-excel",
+    "name": "Excel",
+    "group": "gestion",
+    "order": 1
+  },
+  {
+    "id": "gestion-word",
+    "name": "Word",
+    "group": "gestion",
+    "order": 2
+  },
+  {
+    "id": "gestion-powerpoint",
+    "name": "PowerPoint",
+    "group": "gestion",
+    "order": 3
+  },
+  {
+    "id": "gestion-outlook",
+    "name": "Outlook",
+    "group": "gestion",
+    "order": 4
+  },
+  {
+    "id": "gestion-teams",
+    "name": "Teams",
+    "group": "gestion",
+    "order": 5
+  },
+  {
+    "id": "gestion-ats",
+    "name": "ATS",
+    "group": "gestion",
+    "order": 6
+  },
+  {
+    "id": "gestion-canva",
+    "name": "Canva",
+    "group": "gestion",
+    "order": 7
+  },
+  {
+    "id": "gestion-pulso-salud",
+    "name": "Pulso Salud",
+    "group": "gestion",
+    "order": 8
+  },
+  {
+    "id": "gestion-clinica-doktuz-agenda-de-emo",
+    "name": "Clínica Doktuz (agenda de EMO)",
+    "group": "gestion",
+    "order": 9
+  },
+  {
+    "id": "gestion-verificacion-de-antecedentes",
+    "name": "Verificación de antecedentes",
+    "group": "gestion",
+    "order": 10
+  },
+  {
+    "id": "gestion-evaluacion-de-riesgo-crediticio",
+    "name": "Evaluación de riesgo crediticio",
+    "group": "gestion",
+    "order": 11
+  },
+  {
+    "id": "fuentes-redes-grupos-de-facebook",
+    "name": "Grupos de Facebook",
+    "group": "fuentes",
+    "subgroup": "redes",
+    "order": 12
+  },
+  {
+    "id": "fuentes-redes-grupos-de-whatsapp",
+    "name": "Grupos de WhatsApp",
+    "group": "fuentes",
+    "subgroup": "redes",
+    "order": 13
+  },
+  {
+    "id": "fuentes-redes-grupos-de-linkedin",
+    "name": "Grupos de LinkedIn",
+    "group": "fuentes",
+    "subgroup": "redes",
+    "order": 14
+  },
+  {
+    "id": "fuentes-redes-publicaciones-de-convocatoria-en-linkedin",
+    "name": "Publicaciones de convocatoria en LinkedIn",
+    "group": "fuentes",
+    "subgroup": "redes",
+    "order": 15
+  },
+  {
+    "id": "fuentes-redes-github",
+    "name": "GitHub",
+    "group": "fuentes",
+    "subgroup": "redes",
+    "order": 16
+  },
+  {
+    "id": "fuentes-hunting-linkedin",
+    "name": "LinkedIn",
+    "group": "fuentes",
+    "subgroup": "hunting",
+    "order": 17
+  },
+  {
+    "id": "fuentes-hunting-bumeran",
+    "name": "Bumeran",
+    "group": "fuentes",
+    "subgroup": "hunting",
+    "order": 18
+  },
+  {
+    "id": "fuentes-hunting-pandape",
+    "name": "Pandapé",
+    "group": "fuentes",
+    "subgroup": "hunting",
+    "order": 19
+  },
+  {
+    "id": "fuentes-bolsas-bumeran",
+    "name": "Bumeran",
+    "group": "fuentes",
+    "subgroup": "bolsas",
+    "order": 20
+  },
+  {
+    "id": "fuentes-bolsas-computrabajo",
+    "name": "Computrabajo",
+    "group": "fuentes",
+    "subgroup": "bolsas",
+    "order": 21
+  },
+  {
+    "id": "fuentes-bolsas-pandape",
+    "name": "Pandapé",
+    "group": "fuentes",
+    "subgroup": "bolsas",
+    "order": 22
+  },
+  {
+    "id": "fuentes-bolsas-linkedin",
+    "name": "LinkedIn",
+    "group": "fuentes",
+    "subgroup": "bolsas",
+    "order": 23
+  },
+  {
+    "id": "fuentes-bases-bases-de-procesos-anteriores",
+    "name": "Bases de procesos anteriores",
+    "group": "fuentes",
+    "subgroup": "bases",
+    "order": 24
+  },
+  {
+    "id": "data-ia-excel",
+    "name": "Excel",
+    "group": "data-ia",
+    "level": "Intermedio",
+    "order": 25
+  },
+  {
+    "id": "data-ia-sql-server",
+    "name": "SQL Server",
+    "group": "data-ia",
+    "level": "Intermedio",
+    "order": 26
+  },
+  {
+    "id": "data-ia-power-bi",
+    "name": "Power BI",
+    "group": "data-ia",
+    "level": "Intermedio",
+    "order": 27
+  },
+  {
+    "id": "data-ia-python",
+    "name": "Python",
+    "group": "data-ia",
+    "level": "Intermedio",
+    "order": 28
+  },
+  {
+    "id": "ia-seleccion-claude-desktop",
+    "name": "Claude Desktop",
+    "group": "ia-seleccion",
+    "description": "Análisis de vacantes, redacción de perfiles y publicaciones, y comparación de documentos en una conversación.",
+    "level": "Uso práctico",
+    "order": 29
+  },
+  {
+    "id": "ia-seleccion-claude-code",
+    "name": "Claude Code",
+    "group": "ia-seleccion",
+    "description": "Desarrollo de herramientas propias y de este portafolio con apoyo de IA desde la terminal.",
+    "level": "Uso práctico",
+    "order": 30
+  },
+  {
+    "id": "ia-seleccion-conexion-con-mcp",
+    "name": "Conexión con MCP",
+    "group": "ia-seleccion",
+    "description": "Conexión de herramientas externas a Claude para consultar datos y ejecutar tareas desde la conversación.",
+    "level": "En aprendizaje",
+    "order": 31
+  },
+  {
+    "id": "ia-seleccion-skill-de-ranking",
+    "name": "Skill de ranking",
+    "group": "ia-seleccion",
+    "description": "Compara CVs contra un perfil con una rúbrica de 0 a 100 y genera un shortlist con justificación.",
+    "level": "Uso práctico",
+    "order": 32
+  },
+  {
+    "id": "ia-seleccion-skill-de-analisis-de-perfil",
+    "name": "Skill de análisis de perfil",
+    "group": "ia-seleccion",
+    "description": "Convierte una vacante en un brief estructurado, detecta vacíos y clasifica requisitos.",
+    "level": "Uso práctico",
+    "order": 33
+  },
+  {
+    "id": "ia-seleccion-skill-de-publicaciones",
+    "name": "Skill de publicaciones",
+    "group": "ia-seleccion",
+    "description": "Adapta un mismo perfil al formato de cada bolsa de empleo.",
+    "level": "Uso práctico",
+    "order": 34
+  },
+  {
+    "id": "ia-seleccion-skill-de-fichas-de-candidato",
+    "name": "Skill de fichas de candidato",
+    "group": "ia-seleccion",
+    "description": "Prepara presentaciones sin datos personales para compartir con el cliente.",
+    "level": "Uso práctico",
+    "order": 35
+  }
+]

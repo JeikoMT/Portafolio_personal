@@ -1,0 +1,6 @@
+[
+  { "id": "talent-acquisition", "title": "Talent Acquisition", "description": "Reclutamiento end to end, sourcing, hunting, gestión de vacantes en ATS y seguimiento de indicadores.", "icon": "users", "order": 1 },
+  { "id": "psicologia-organizacional", "title": "Psicología organizacional", "description": "Entrevistas por competencias, assessment centers y administración e interpretación de pruebas.", "icon": "clipboard-list", "order": 2 },
+  { "id": "data-bases-de-datos", "title": "Data y bases de datos", "description": "Consultas SQL, modelado de datos y análisis con Excel y Power BI.", "icon": "database", "order": 3 },
+  { "id": "tecnologia-ia", "title": "Tecnología e IA", "description": "Desarrollo asistido por IA, documentación y diseño de soluciones para procesos de selección.", "icon": "sparkles", "order": 4 }
+]

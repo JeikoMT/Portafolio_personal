@@ -1,0 +1,10 @@
+[
+  { "id": "a1", "group": "Entrevista", "name": "Entrevistas por competencias (STAR)" },
+  { "id": "a2", "group": "Entrevista", "name": "Entrevistas grupales presenciales y virtuales" },
+  { "id": "a3", "group": "Evaluación grupal", "name": "Assessment center para posiciones ejecutivas y mandos medios" },
+  { "id": "a4", "group": "Proyectivas", "name": "Persona bajo la lluvia" },
+  { "id": "a5", "group": "Proyectivas", "name": "Test de Wartegg" },
+  { "id": "a6", "group": "Psicométricas", "name": "Administración e interpretación de pruebas psicométricas" },
+  { "id": "a7", "group": "Incorporación", "name": "Onboarding e inducción" },
+  { "id": "a8", "group": "Incorporación", "name": "T-Registro y afiliación al sistema de pensiones" }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "constancia-canvia",
+    "type": "constancia",
+    "company": "Canvia",
+    "role": "IT Recruiter",
+    "period": "Jul. 2025 – Mar. 2026"
+  },
+  {
+    "id": "constancia-delibakery",
+    "type": "constancia",
+    "company": "Delibakery",
+    "role": "Asistente de Recursos Humanos",
+    "period": "Ene. – Abr. 2025"
+  },
+  {
+    "id": "constancia-manpower",
+    "type": "constancia",
+    "company": "Manpower Group",
+    "role": "Auxiliar de Reclutamiento",
+    "period": "Ago. – Dic. 2024"
+  },
+  {
+    "id": "constancia-ds-consultores",
+    "type": "constancia",
+    "company": "DS Consultores",
+    "role": "Practicante de RR. HH.",
+    "period": "Jun. – Nov. 2022"
+  }
+]

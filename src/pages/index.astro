@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getProfile } from '../lib/content';
+
+const profile = await getProfile();
+---
+<BaseLayout title={`${profile.name} · ${profile.headline}`} description={profile.tagline}>
+  <div class="page" id="inicio">
+    <Navbar name={profile.name} subtitle={profile.navSubtitle} />
+    <main class="container">
+      <!-- Secciones de P-01 se agregan en F1–F3 -->
+      <section class="section">
+        <p class="eyebrow">{profile.greeting}</p>
+        <h1 class="h2">{profile.name}</h1>
+        <p>{profile.headline}</p>
+      </section>
+    </main>
+    <Footer linkedinUrl={profile.contact.linkedinUrl} />
+  </div>
+</BaseLayout>
