@@ -1,5 +1,18 @@
 [
   {
+    "id": "python-analisis-de-datos",
+    "type": "curso",
+    "title": "Python: Análisis de Datos",
+    "issuer": "WE Educación Ejecutiva",
+    "date": "Oct. 2026",
+    "sortDate": "2026-10",
+    "hours": 30,
+    "category": "Data",
+    "image": "../assets/certificates/python-analisis-de-datos.png",
+    "imageAlt": "Certificado del curso Python: Análisis de Datos emitido por WE Educación Ejecutiva",
+    "orientation": "vertical"
+  },
+  {
     "id": "power-bi",
     "type": "curso",
     "title": "Microsoft Power BI",
