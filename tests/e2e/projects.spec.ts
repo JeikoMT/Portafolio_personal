@@ -55,6 +55,18 @@ test.describe('Proyectos', () => {
     await expect(carousel.locator('[data-counter]')).toHaveText('4 / 4');
   });
 
+  test('las flechas del carrusel no dibujan un anillo de foco a pantalla media', async ({ page }) => {
+    await page.goto('/proyectos/interviewnotes');
+    const next = page.getByRole('button', { name: 'Imagen siguiente' });
+    await next.focus();
+    await page.keyboard.press('Tab');
+    await next.focus();
+    const outline = await next.evaluate((el) => getComputedStyle(el).outlineStyle);
+    expect(outline).toBe('none');
+    const arrow = await next.locator('.carousel__arrow').evaluate((el) => getComputedStyle(el).outlineStyle);
+    expect(arrow).toBe('solid');
+  });
+
   test('CA-21: índice lateral solo en ≥ 1024 px y con un enlace por sección', async ({ page }) => {
     await page.goto('/proyectos/interviewnotes');
     const toc = page.getByRole('navigation', { name: 'Índice del proyecto' });

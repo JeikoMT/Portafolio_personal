@@ -77,7 +77,10 @@ const total = slides.length;
   }
   .carousel__nav--prev { left: 0; justify-content: flex-start; cursor: w-resize; }
   .carousel__nav--next { right: 0; justify-content: flex-end; cursor: e-resize; }
+  .carousel__nav { -webkit-tap-highlight-color: transparent; outline: none; }
   .carousel__nav:hover, .carousel__nav:focus-visible { opacity: 1; }
+  /* El botón cubre media imagen: el anillo de foco va en el círculo de la flecha, no en todo el botón */
+  .carousel__nav:focus-visible .carousel__arrow { outline: var(--focus-ring); outline-offset: 2px; }
   .carousel__arrow {
     width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
     background: var(--color-surface-strong); color: var(--color-text); box-shadow: 0 12px 32px rgba(11, 27, 58, 0.2);
