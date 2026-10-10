@@ -27,3 +27,7 @@ pnpm-debug.log*
 src/assets/certificates/
 src/assets/events/
 .lighthouseci/
+
+# Salidas de pruebas
+test-results/
+playwright-report/
