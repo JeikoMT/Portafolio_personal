@@ -32,6 +32,15 @@ test.describe('P-01 en móvil (360 px)', () => {
     expect(scrollable).toBe(true);
   });
 
+  test('la navbar cabe en 360 px y el botón «Menú» es visible por completo', async ({ page }) => {
+    await page.goto('/');
+    const box = await page.getByRole('button', { name: 'Menú' }).boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x + box!.width).toBeLessThanOrEqual(360);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+
   test('menú móvil: aria-expanded, cierra con Esc y al elegir un enlace', async ({ page }) => {
     await page.goto('/');
     const button = page.getByRole('button', { name: /Menú|Cerrar/ });

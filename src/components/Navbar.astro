@@ -107,7 +107,11 @@ const { variant = 'home', name, subtitle, showEvents = true } = Astro.props;
     .navbar__links { display: flex; }
     .menu-btn, .menu-panel { display: none; }
   }
-  @media (max-width: 420px) {
+  /* En pantallas angostas queda el monograma (el enlace conserva su aria-label) para que quepan «Eventos» y «Menú» */
+  @media (max-width: 559px) {
+    .brand__text { display: none; }
+  }
+  @media (max-width: 1023px) {
     .brand__sub { display: none; }
   }
 </style>
