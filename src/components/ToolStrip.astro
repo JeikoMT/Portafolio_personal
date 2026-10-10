@@ -1,8 +1,9 @@
 ---
-interface Props { label: string; }
-const { label } = Astro.props;
+/** `scrollbar`: franja de tarjetas con scroll horizontal manual y barra visible en todos los anchos. */
+interface Props { label: string; scrollbar?: boolean; }
+const { label, scrollbar = false } = Astro.props;
 ---
-<div class="strip glass">
+<div class:list={['strip', 'glass', scrollbar && 'strip--scroll']}>
   <p class="strip__label">{label}</p>
   <!-- Región desplazable accesible por teclado (CA-03): el scroll es interno, nunca de la página -->
   <div class="strip__scroll" role="region" aria-label={label} tabindex="0">
@@ -17,7 +18,7 @@ const { label } = Astro.props;
   }
   .strip__label { font-size: var(--fs-16); font-weight: 700; }
   .strip__scroll {
-    min-width: 0; overflow-x: auto; scrollbar-width: thin;
+    min-width: 0; overflow-x: auto; scrollbar-width: thin; scrollbar-color: rgba(29, 78, 216, 0.35) transparent;
     -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent);
     mask-image: linear-gradient(90deg, #000 80%, transparent);
   }
@@ -27,5 +28,13 @@ const { label } = Astro.props;
     .strip { grid-template-columns: 200px minmax(0, 1fr); }
     .strip__scroll { overflow: visible; -webkit-mask-image: none; mask-image: none; }
     .strip__inner { flex-wrap: wrap; width: auto; padding-right: 0; }
+
+    /* Franja de tarjetas: sigue siendo una sola fila con barra de scroll horizontal */
+    .strip--scroll .strip__scroll {
+      overflow-x: auto; scrollbar-width: thin; scrollbar-color: rgba(29, 78, 216, 0.35) transparent;
+      -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, #000 88%, transparent);
+    }
+    .strip--scroll .strip__inner { flex-wrap: nowrap; width: max-content; gap: var(--space-3); padding: 2px 56px 8px 2px; }
   }
 </style>

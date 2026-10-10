@@ -71,6 +71,31 @@ test.describe('P-01 en escritorio (1440 px)', () => {
     await expect(stats.nth(2)).toContainText('sectores');
   });
 
+  test('el orden de la navbar sigue el de la página: Herramientas antes que Experiencia y Proyectos', async ({ page }) => {
+    await page.goto('/');
+    const labels = await page.locator('nav[aria-label="Principal"] .navlink').allTextContents();
+    expect(labels).toEqual(['Sobre mí', 'Herramientas', 'Experiencia', 'Proyectos', 'Certificados', 'Contacto']);
+    const ids = ['sobre-mi', 'herramientas', 'experiencia', 'proyectos', 'certificados', 'contacto'];
+    const tops = await Promise.all(ids.map((id) => page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top + window.scrollY)));
+    expect([...tops].sort((a, b) => a - b)).toEqual(tops);
+  });
+
+  test('la franja «IA en proceso de selección» es una sola fila con scroll horizontal', async ({ page }) => {
+    await page.goto('/');
+    const region = page.locator('#herramientas [role="region"]').nth(3);
+    const cards = region.locator('article');
+    await expect(cards).toHaveCount(7);
+    const tops = await cards.evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().top)));
+    expect(new Set(tops).size).toBe(1);
+    const scrolls = await region.evaluate((el) => el.scrollWidth > el.clientWidth && getComputedStyle(el).overflowX === 'auto');
+    expect(scrolls).toBe(true);
+    await region.scrollIntoViewIfNeeded();
+    await expect(cards.first()).toBeInViewport();
+    await expect(cards.last()).not.toBeInViewport();
+    await region.evaluate((el) => (el.scrollLeft = el.scrollWidth));
+    await expect(cards.last()).toBeInViewport();
+  });
+
   test('CA-12: WhatsApp del hero y de Contacto abren wa.me en pestaña nueva', async ({ page }) => {
     await page.goto('/');
     const links = page.locator(`a[href="${WA}"]`);

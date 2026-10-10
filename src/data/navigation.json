@@ -1,15 +1,48 @@
 {
-  "home": { "label": "Ir al inicio", "href": "/" },
+  "home": {
+    "label": "Ir al inicio",
+    "href": "/"
+  },
   "links": [
-    { "label": "Sobre mí", "href": "/#sobre-mi" },
-    { "label": "Experiencia", "href": "/#experiencia" },
-    { "label": "Proyectos", "href": "/#proyectos" },
-    { "label": "Herramientas", "href": "/#herramientas" },
-    { "label": "Certificados", "href": "/#certificados" },
-    { "label": "Contacto", "href": "/#contacto" }
+    {
+      "label": "Sobre mí",
+      "href": "/#sobre-mi"
+    },
+    {
+      "label": "Herramientas",
+      "href": "/#herramientas"
+    },
+    {
+      "label": "Experiencia",
+      "href": "/#experiencia"
+    },
+    {
+      "label": "Proyectos",
+      "href": "/#proyectos"
+    },
+    {
+      "label": "Certificados",
+      "href": "/#certificados"
+    },
+    {
+      "label": "Contacto",
+      "href": "/#contacto"
+    }
   ],
-  "events": { "label": "Eventos", "href": "/eventos" },
-  "backHome": { "label": "Inicio", "href": "/" },
-  "menu": { "open": "Menú", "close": "Cerrar" },
-  "footer": { "copyright": "© 2026 Jeiko Mendiguri", "backToTop": "Volver arriba" }
+  "events": {
+    "label": "Eventos",
+    "href": "/eventos"
+  },
+  "backHome": {
+    "label": "Inicio",
+    "href": "/"
+  },
+  "menu": {
+    "open": "Menú",
+    "close": "Cerrar"
+  },
+  "footer": {
+    "copyright": "© 2026 Jeiko Mendiguri",
+    "backToTop": "Volver arriba"
+  }
 }

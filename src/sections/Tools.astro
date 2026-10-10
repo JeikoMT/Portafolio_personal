@@ -40,7 +40,7 @@ const subgroups = (['redes', 'hunting', 'bolsas', 'bases'] as const).map((key) =
       ))}
     </ToolStrip>
 
-    <ToolStrip label={ui.tools.strips['ia-seleccion']}>
+    <ToolStrip label={ui.tools.strips['ia-seleccion']} scrollbar>
       {tools.iaSeleccion.map((t) => <AiToolCard name={t.name} description={t.description ?? ''} level={t.level ?? ''} />)}
     </ToolStrip>
   </div>
