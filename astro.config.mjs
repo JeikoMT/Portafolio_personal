@@ -14,4 +14,6 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap({ filter: (page) => hasEvents || !/\/eventos\/?$/.test(page) })],
   prefetch: false,
+  // La CSP no permite fuentes data: (default-src 'self'); no se incrustan assets pequeños.
+  vite: { build: { assetsInlineLimit: 0 } },
 });

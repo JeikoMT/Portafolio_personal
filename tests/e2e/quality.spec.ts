@@ -17,6 +17,19 @@ test.describe('Accesibilidad (axe)', () => {
   }
 });
 
+test.describe('Seguridad', () => {
+  test('la CSP no bloquea ningún recurso en P-01, P-02 y P-04', async ({ page }) => {
+    const violations: string[] = [];
+    page.on('console', (m) => {
+      if (m.type() === 'error' && /Content Security Policy/i.test(m.text())) violations.push(m.text().slice(0, 160));
+    });
+    for (const path of ['/', '/proyectos/interviewnotes', '/eventos']) {
+      await page.goto(path, { waitUntil: 'networkidle' });
+    }
+    expect(violations).toEqual([]);
+  });
+});
+
 test.describe('SEO (CA-16)', () => {
   for (const path of ['/', '/proyectos/interviewnotes', '/eventos']) {
     test(`${path}: title, description, canonical y og:image propios`, async ({ page }) => {
