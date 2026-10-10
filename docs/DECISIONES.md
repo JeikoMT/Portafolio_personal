@@ -19,13 +19,6 @@ Registro de lo que se decidió al construir y que no está literal en el Agents 
 | D-11 | El botón «Eventos» de la navbar y `/eventos` en el sitemap aparecen solo si hay fotos publicadas | DP-09: no mostrar un enlace a una galería vacía |
 | D-12 | El enlace `rel="sitemap"` y la analítica quedan condicionados a configuración | Sin token no se carga nada de Cloudflare (sin cookies) |
 
-## En espera (no versionado ni publicado)
-
-| DP | Qué falta | Estado |
-|---|---|---|
-| DP-04 | Las 7 imágenes de certificados traen firmas de terceros y códigos o QR (RN-01) | Archivos locales en `src/assets/certificates/` (en `.gitignore`); las 7 entradas de curso no están en `certificates.json`. El diálogo (IX-06) está implementado y verificado con ellas en local. Al llegar las versiones recortadas: copiarlas a esa carpeta, añadir las entradas y quitar la línea del `.gitignore` |
-| DP-09 | Autorización de las personas en las 5 fotos de Eventos. Las fotos 4 y 5 muestran pantallas y paneles con nombres de empresa y producto legibles (RN-12) | `src/assets/events/` en `.gitignore`; `events.json` vacío; `/eventos` muestra un mensaje y no se indexa |
-
 ## Resueltas
 
 | DP | Resolución |
@@ -34,6 +27,8 @@ Registro de lo que se decidió al construir y que no está literal en el Agents 
 | DP-02 | Se usa `foto-jeiko.webp` del diseño tal cual (400×400 px), por indicación del propietario |
 | DP-03 | Se cargan las 2 publicaciones del contenido inicial |
 | DP-10 | Las 8 capturas (InterviewNotes y Transcriptor) se revisaron: empresas, personas y correos son ficticios |
-| DP-11 | Cargados «Intermedio» y «Licenciado» como indica el Agents v1.2; pendiente solo la confirmación del propietario |
+| DP-11 | «Intermedio» (Excel, SQL Server, Power BI, Python) y «Licenciado» confirmados por el propietario |
 | DP-06 | Las secciones «Pendiente de documentar.» se omiten; Recruitment Analytics Database y Dashboard de recruiting muestran Objetivo y Solución |
-| DP-07 | Estados cargados como en el Agents; confirmar antes de publicar |
+| DP-07 | Estados de proyectos confirmados por el propietario |
+| DP-04 | El propietario decidió publicar los 7 certificados tal cual están en el diseño, aunque incluyen firmas de terceros y códigos o QR (excepción consciente a RN-01) |
+| DP-09 | El propietario confirmó la autorización de las personas; se publican las 5 fotos con alt neutros (RN-12 limita alt y leyendas, no el contenido de la foto) |

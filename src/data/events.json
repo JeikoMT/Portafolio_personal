@@ -1,1 +1,7 @@
-[]
+[
+  { "id": "e1", "image": "../assets/events/eventos-1.jpg", "alt": "Equipo reunido frente al letrero de la oficina", "focus": "50% 70%", "order": 1 },
+  { "id": "e2", "image": "../assets/events/eventos-2.jpg", "alt": "Equipo sentado alrededor de una mesa con un pastel", "focus": "50% 72%", "order": 2 },
+  { "id": "e3", "image": "../assets/events/eventos-3.jpg", "alt": "Almuerzo del equipo en un restaurante", "focus": "50% 55%", "order": 3 },
+  { "id": "e4", "image": "../assets/events/eventos-4.jpg", "alt": "Asistentes a un evento frente a una pantalla", "focus": "50% 62%", "order": 4 },
+  { "id": "e5", "image": "../assets/events/eventos-5.png", "alt": "Tres asistentes en un evento corporativo", "focus": "50% 68%", "order": 5 }
+]
