@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import diagrams from '../data/diagrams.json';
+
+interface Props { name: keyof typeof diagrams; }
+const diagram = diagrams[Astro.props.name];
+const note = 'note' in diagram ? (diagram.note as string) : undefined;
+---
+{diagram && (
+  <div class="diagram" role="img" aria-label={diagram.ariaLabel}>
+    {diagram.rows.map((row) => (
+      <div class:list={['diagram__row', row.indent && 'diagram__row--indent']}>
+        {row.indent && <Icon name="corner-down-right" size={18} class="diagram__corner" />}
+        {row.nodes.map((n, i) => (
+          <>
+            {i > 0 && !('compact' in row && row.compact) && <Icon name="arrow-right" size={18} class="diagram__arrow" />}
+            <div class:list={['diagram__node', 'accent' in n && n.accent && 'diagram__node--accent', 'compact' in row && row.compact && 'diagram__node--compact']}>
+              <p class="diagram__title">{n.title}</p>
+              {'sub' in n && n.sub && <p class="diagram__sub">{n.sub}</p>}
+            </div>
+          </>
+        ))}
+      </div>
+    ))}
+    {note && <p class="diagram__note">{note}</p>}
+  </div>
+)}
+
+<style>
+  .diagram {
+    display: flex; flex-direction: column; gap: 10px; padding: var(--space-4); border-radius: 12px;
+    background: var(--color-bg); border: 1px solid rgba(29, 78, 216, 0.12);
+  }
+  .diagram__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+  .diagram__row--indent { padding-left: 12px; }
+  .diagram :global(.diagram__corner), .diagram :global(.diagram__arrow) { color: var(--color-primary); }
+  .diagram__node {
+    flex: 1 1 150px; padding: 12px; border-radius: var(--radius-sm); background: var(--color-surface-solid); border: 1px solid rgba(29, 78, 216, 0.2);
+  }
+  .diagram__node--accent { background: var(--color-primary-soft); }
+  .diagram__node--compact { flex-basis: 120px; padding: 10px 12px; }
+  .diagram__title { font-size: var(--fs-14); font-weight: 700; }
+  .diagram__sub { font-size: var(--fs-12); color: var(--color-text-muted); }
+  .diagram__note { font-size: var(--fs-12); color: var(--color-text-muted); padding-left: 12px; }
+</style>

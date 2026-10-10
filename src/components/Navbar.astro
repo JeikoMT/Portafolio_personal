@@ -6,8 +6,10 @@ interface Props {
   variant?: 'home' | 'project' | 'events';
   name: string;
   subtitle: string;
+  /** El botón «Eventos» solo aparece cuando hay fotos publicadas (DP-09). */
+  showEvents?: boolean;
 }
-const { variant = 'home', name, subtitle } = Astro.props;
+const { variant = 'home', name, subtitle, showEvents = true } = Astro.props;
 ---
 <header class="navbar" data-navbar>
   <nav class="navbar__bar glass" aria-label="Principal">
@@ -30,7 +32,7 @@ const { variant = 'home', name, subtitle } = Astro.props;
     <div class="navbar__actions">
       {variant === 'events' ? (
         <a class="btn btn--dark btn--sm" href={nav.backHome.href}><Icon name="house" size={18} />{nav.backHome.label}</a>
-      ) : (
+      ) : showEvents && (
         <a class="btn btn--dark btn--sm" href={nav.events.href}><Icon name="images" size={18} />{nav.events.label}</a>
       )}
       {variant === 'home' && (
@@ -111,7 +113,12 @@ const { variant = 'home', name, subtitle } = Astro.props;
 </style>
 
 <script>
+  let ac: AbortController | undefined;
+
   function init() {
+    ac?.abort();
+    ac = new AbortController();
+    const { signal } = ac;
     const btn = document.querySelector<HTMLButtonElement>('[data-menu-button]');
     const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
     if (!btn || !panel) return;
@@ -127,14 +134,14 @@ const { variant = 'home', name, subtitle } = Astro.props;
       iconClose.hidden = !open;
     };
 
-    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
-    panel.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => set(false)));
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'), { signal });
+    panel.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => set(false), { signal }));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
         set(false);
         btn.focus();
       }
-    });
+    }, { signal });
   }
   document.addEventListener('astro:page-load', init);
 </script>

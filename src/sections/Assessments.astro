@@ -1,0 +1,38 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import Icon from '../components/Icon.astro';
+import { getAssessments } from '../lib/content';
+import ui from '../data/sections.json';
+
+const items = await getAssessments();
+const order = ['Entrevista', 'Evaluación grupal', 'Proyectivas', 'Psicométricas', 'Incorporación'] as const;
+const groups = order
+  .map((key) => ({ key, ...ui.assessments.groups[key], items: items.filter((i) => i.group === key) }))
+  .filter((g) => g.items.length > 0);
+---
+<section class="container section" aria-labelledby="h-eval">
+  <SectionHeader eyebrow={ui.assessments.eyebrow} title={ui.assessments.title} titleId="h-eval" />
+  <ul class="groups">
+    {groups.map((g) => (
+      <li class="group glass">
+        <span class="group__icon"><Icon name={g.icon} size={20} /></span>
+        <h3 class="group__title">{g.title}</h3>
+        <ul class="group__items">
+          {g.items.map((i) => <li>{i.name}</li>)}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: var(--space-4); margin-top: var(--space-8); }
+  .group { display: flex; flex-direction: column; gap: var(--space-3); padding: 22px; border-radius: var(--radius-md); }
+  .group__icon {
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary);
+  }
+  .group__title { font-size: var(--fs-18); font-weight: 700; }
+  .group__items { display: flex; flex-direction: column; gap: 6px; }
+  .group__items li { font-size: var(--fs-14); line-height: 1.5; color: var(--color-text-body); padding-left: 12px; border-left: 2px solid var(--color-primary-soft); }
+</style>

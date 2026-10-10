@@ -1,0 +1,116 @@
+{
+  "hero": {
+    "viewProjects": "Ver proyectos",
+    "whatsapp": "Escribir por WhatsApp",
+    "sectors": "Sectores"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "title": "Personas, procesos y datos",
+    "evolution": "Mi evolución: cada etapa se suma a la anterior."
+  },
+  "areas": {
+    "eyebrow": "Qué hago",
+    "title": "Áreas profesionales"
+  },
+  "tools": {
+    "eyebrow": "Herramientas",
+    "title": "Con qué trabajo",
+    "strips": {
+      "gestion": "Gestión",
+      "fuentes": "Fuentes de reclutamiento",
+      "data-ia": "Data e IA",
+      "ia-seleccion": "IA en proceso de selección"
+    },
+    "subgroups": {
+      "redes": "Redes",
+      "hunting": "Hunting",
+      "bolsas": "Bolsas",
+      "bases": "Bases"
+    }
+  },
+  "experience": {
+    "eyebrow": "Trayectoria",
+    "title": "Experiencia por sector",
+    "secondary": "Experiencia en psicología clínica"
+  },
+  "projects": {
+    "eyebrow": "Proyectos",
+    "title": "Lo que estoy construyendo",
+    "detail": "Ver detalle",
+    "cardAria": "Ver detalle del proyecto",
+    "coverPrefix": "Portada de"
+  },
+  "projectPage": {
+    "back": "Volver a proyectos",
+    "toc": "En esta página",
+    "tocAria": "Índice del proyecto",
+    "repo": "Ver repositorio",
+    "demo": "Ver demo",
+    "carouselRole": "carrusel",
+    "carouselLabel": "Pantallas de",
+    "prev": "Imagen anterior",
+    "next": "Imagen siguiente",
+    "goTo": "Ir a",
+    "screen": "Pantalla:",
+    "fictitious": "Datos ficticios"
+  },
+  "method": {
+    "eyebrow": "Método",
+    "title": "Cómo abordo un proceso"
+  },
+  "assessments": {
+    "eyebrow": "Evaluación",
+    "title": "Cómo evalúo a las personas",
+    "groups": {
+      "Entrevista": { "title": "Entrevista", "icon": "message-square" },
+      "Evaluación grupal": { "title": "Evaluación grupal", "icon": "users" },
+      "Proyectivas": { "title": "Pruebas proyectivas", "icon": "pen-tool" },
+      "Psicométricas": { "title": "Pruebas psicométricas", "icon": "clipboard-check" },
+      "Incorporación": { "title": "Incorporación", "icon": "user-check" }
+    }
+  },
+  "education": {
+    "eyebrow": "Formación",
+    "title": "Formación e idiomas",
+    "languages": "Idiomas"
+  },
+  "certificates": {
+    "eyebrow": "Certificados",
+    "title": "Formación complementaria",
+    "courses": "Cursos",
+    "constancias": "Constancias laborales",
+    "view": "Ver certificado",
+    "close": "Cerrar",
+    "error": "No se pudo cargar la imagen del certificado.",
+    "onRequest": "Constancia disponible a solicitud",
+    "hours": "h"
+  },
+  "posts": {
+    "eyebrow": "Publicaciones",
+    "title": "Lo que comparto en LinkedIn",
+    "empty": "Pronto compartiré nuevas publicaciones.",
+    "link": "Ver en LinkedIn",
+    "coverPrefix": "Portada del carrusel:"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "¿Conversamos?",
+    "text": "Estoy abierto a oportunidades en Talent Acquisition y recruiting TI, y a proyectos que unan datos y procesos de selección.",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "phoneCopied": "Teléfono · Copiado",
+    "phoneCopyAria": "Copiar teléfono",
+    "chat": "Chat",
+    "whatsapp": "WhatsApp",
+    "profile": "Perfil profesional",
+    "linkedin": "LinkedIn",
+    "location": "Ubicación"
+  },
+  "events": {
+    "eyebrow": "Eventos",
+    "title": "Eventos corporativos",
+    "back": "Volver al portafolio",
+    "empty": "Pronto compartiré fotos de eventos."
+  }
+}

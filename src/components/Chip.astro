@@ -1,0 +1,22 @@
+---
+interface Props { variant?: 'pill' | 'tool' | 'stack'; }
+const { variant = 'tool' } = Astro.props;
+---
+<span class:list={['chip', `chip--${variant}`]}><slot /></span>
+
+<style>
+  .chip {
+    display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; font-size: var(--fs-14); font-weight: 500;
+    color: var(--color-text-body); white-space: nowrap;
+  }
+  .chip--pill {
+    border-radius: var(--radius-pill); background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text);
+  }
+  .chip--tool {
+    border-radius: var(--radius-sm); background: var(--color-surface-solid); border: 1px solid rgba(11, 27, 58, 0.1);
+  }
+  .chip--stack {
+    min-height: 28px; padding: 0 10px; border-radius: var(--radius-sm); background: var(--color-bg);
+    border: 1px solid rgba(11, 27, 58, 0.1); font-size: var(--fs-12); font-weight: 600;
+  }
+</style>

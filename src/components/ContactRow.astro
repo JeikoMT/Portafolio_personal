@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+  arrow?: string;
+  ariaLabel?: string;
+  copyText?: string;
+  copiedLabel?: string;
+}
+const { icon, label, value, href, external = false, arrow = 'arrow-right', ariaLabel, copyText, copiedLabel } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const linkProps = href
+  ? { href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}), 'aria-label': ariaLabel }
+  : {};
+---
+<Tag
+  class:list={['crow', href && 'crow--link']}
+  {...linkProps}
+  data-copy-text={copyText}
+  data-copy-label={label}
+  data-copied-label={copiedLabel}
+  data-copy-arrow={copyText ? arrow : undefined}
+>
+  <span class="crow__icon"><Icon name={icon} size={20} /></span>
+  <span class="crow__text">
+    <span class="crow__label" data-crow-label aria-live={copyText ? 'polite' : undefined}>{label}</span>
+    <span class="crow__value">{value}</span>
+  </span>
+  {href && <span class="crow__arrow" data-crow-arrow><Icon name={arrow} size={18} /></span>}
+  {href && copyText && <span class="crow__check" data-crow-check hidden><Icon name="check" size={18} /></span>}
+</Tag>
+
+<style>
+  .crow {
+    display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 8px 14px; border-radius: var(--radius-md);
+    color: var(--color-text); text-decoration: none; transition: background var(--motion-hover);
+  }
+  .crow--link:hover { background: var(--color-surface-solid); color: var(--color-text); }
+  .crow__icon {
+    flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary);
+  }
+  .crow__text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .crow__label { font-size: var(--fs-12); font-weight: 600; color: var(--color-text-muted); }
+  .crow__value { font-size: var(--fs-16); font-weight: 600; overflow-wrap: anywhere; }
+  .crow__arrow, .crow__check { color: var(--color-primary); display: inline-flex; }
+  .crow__check[hidden], .crow__arrow[hidden] { display: none; }
+</style>

@@ -42,5 +42,11 @@ const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
   <body>
     <div class="aurora" aria-hidden="true"></div>
     <slot />
+    <script>
+      // Guarda la ruta de origen para que «Volver a proyectos» pueda usar history.back()
+      document.addEventListener('astro:before-preparation', (e) => {
+        try { sessionStorage.setItem('prev-path', e.from.pathname); } catch { /* sin almacenamiento */ }
+      });
+    </script>
   </body>
 </html>

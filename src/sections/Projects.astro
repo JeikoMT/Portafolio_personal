@@ -1,0 +1,33 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getProjects } from '../lib/content';
+import ui from '../data/sections.json';
+
+const projects = await getProjects();
+---
+<section id="proyectos" class="container section" aria-labelledby="h-proy">
+  <SectionHeader eyebrow={ui.projects.eyebrow} title={ui.projects.title} titleId="h-proy" />
+  <ul class="projects">
+    {projects.map((p) => (
+      <li>
+        <ProjectCard
+          slug={p.data.slug}
+          title={p.data.title}
+          status={p.data.status}
+          summary={p.data.summary}
+          stack={p.data.stack}
+          cover={p.data.cover}
+          coverAlt={p.data.coverAlt}
+          coverNote={p.data.coverNote}
+        />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: var(--space-5); margin-top: var(--space-8); }
+  .projects > li { display: flex; }
+  .projects > li > :global(a) { flex: 1; }
+</style>

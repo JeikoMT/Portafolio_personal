@@ -1,0 +1,41 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import PostCard from '../components/PostCard.astro';
+import Icon from '../components/Icon.astro';
+import { getPosts } from '../lib/content';
+import ui from '../data/sections.json';
+
+const posts = await getPosts();
+---
+<section id="publicaciones" class="container section" aria-labelledby="h-pub">
+  <SectionHeader eyebrow={ui.posts.eyebrow} title={ui.posts.title} titleId="h-pub" />
+  {posts.length > 0 ? (
+    <ul class="posts">
+      {posts.map((p) => (
+        <li>
+          <PostCard title={p.title} summary={p.summary} dateLabel={p.dateLabel} url={p.url} cover={p.cover} coverAlt={p.coverAlt} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class="empty">
+      <span class="empty__icon"><Icon name="linkedin" size={22} /></span>
+      <p>{ui.posts.empty}</p>
+    </div>
+  )}
+</section>
+
+<style>
+  .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: var(--space-5); margin-top: var(--space-8); max-width: 900px; }
+  .posts > li { display: flex; }
+  .posts > li > :global(article) { flex: 1; }
+  .empty {
+    margin-top: var(--space-8); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); padding: 48px 24px;
+    border-radius: var(--radius-lg); background: var(--color-surface); border: 1px dashed rgba(29, 78, 216, 0.3); text-align: center;
+    font-size: var(--fs-16); font-weight: 600; color: var(--color-text-body);
+  }
+  .empty__icon {
+    width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary);
+  }
+</style>

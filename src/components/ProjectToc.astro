@@ -1,0 +1,23 @@
+---
+import ui from '../data/sections.json';
+
+interface Props { sections: { id: string; title: string }[]; }
+const { sections } = Astro.props;
+---
+<nav class="toc glass" aria-label={ui.projectPage.tocAria}>
+  <p class="toc__title">{ui.projectPage.toc}</p>
+  {sections.map((s) => <a class="toc__link" href={`#${s.id}`}>{s.title}</a>)}
+</nav>
+
+<style>
+  .toc { position: sticky; top: 112px; display: none; flex-direction: column; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); }
+  .toc__title { padding: 6px 10px 8px; font-size: var(--fs-12); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); }
+  .toc__link {
+    display: flex; align-items: center; min-height: 36px; padding: 0 10px; border-radius: var(--radius-sm);
+    font-size: var(--fs-14); font-weight: 500; color: var(--color-text-body); text-decoration: none;
+  }
+  .toc__link:hover { background: var(--color-primary-soft); color: var(--color-primary); }
+  @media (min-width: 1024px) {
+    .toc { display: flex; }
+  }
+</style>

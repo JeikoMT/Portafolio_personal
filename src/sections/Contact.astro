@@ -1,0 +1,94 @@
+---
+import ContactRow from '../components/ContactRow.astro';
+import { getProfile } from '../lib/content';
+import ui from '../data/sections.json';
+
+const { contact } = await getProfile();
+---
+<section id="contacto" class="container section" aria-labelledby="h-con">
+  <div class="contact">
+    <div class="contact__text">
+      <p class="eyebrow">{ui.contact.eyebrow}</p>
+      <h2 class="contact__title" id="h-con">{ui.contact.title}</h2>
+      <p class="contact__lead">{ui.contact.text}</p>
+    </div>
+    <div class="contact__card glass">
+      <ContactRow icon="mail" label={ui.contact.email} value={contact.email} href={`mailto:${contact.email}`} />
+      <ContactRow
+        icon="phone"
+        label={ui.contact.phone}
+        value={contact.phoneDisplay}
+        href={`tel:${contact.phoneE164}`}
+        arrow="copy"
+        ariaLabel={`${ui.contact.phoneCopyAria} ${contact.phoneDisplay}`}
+        copyText={contact.phoneE164}
+        copiedLabel={ui.contact.phoneCopied}
+      />
+      <ContactRow icon="message-circle" label={ui.contact.chat} value={ui.contact.whatsapp} href={contact.whatsappUrl} external arrow="external-link" />
+      <ContactRow icon="linkedin" label={ui.contact.profile} value={ui.contact.linkedin} href={contact.linkedinUrl} external arrow="external-link" />
+      <ContactRow icon="map-pin" label={ui.contact.location} value={contact.location} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+  .contact__text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .contact__title { font-size: clamp(var(--fs-40), 5vw, var(--fs-56)); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; }
+  .contact__lead { font-size: var(--fs-18); line-height: 1.6; color: var(--color-text-muted); max-width: 480px; }
+  .contact__card { display: flex; flex-direction: column; padding: var(--space-2); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+  @media (min-width: 900px) {
+    .contact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+
+<script>
+  let ac: AbortController | undefined;
+  let timer: number | undefined;
+
+  async function copy(text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Método alternativo cuando no hay permiso o el contexto no es seguro
+    }
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    try { document.execCommand('copy'); } catch { /* sin mensaje de error visible (IX-05) */ }
+    area.remove();
+  }
+
+  function init() {
+    ac?.abort();
+    ac = new AbortController();
+    const row = document.querySelector<HTMLElement>('[data-copy-text]');
+    if (!row) return;
+    const label = row.querySelector<HTMLElement>('[data-crow-label]')!;
+    const arrow = row.querySelector<HTMLElement>('[data-crow-arrow]');
+    const check = row.querySelector<HTMLElement>('[data-crow-check]');
+    const original = row.dataset.copyLabel ?? '';
+
+    row.addEventListener('click', (e) => {
+      e.preventDefault();
+      void copy(row.dataset.copyText ?? '');
+      label.textContent = row.dataset.copiedLabel ?? original;
+      if (arrow) arrow.hidden = true;
+      if (check) check.hidden = false;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        label.textContent = original;
+        if (arrow) arrow.hidden = false;
+        if (check) check.hidden = true;
+      }, 2000);
+    }, { signal: ac.signal });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

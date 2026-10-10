@@ -1,0 +1,74 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Badge from './Badge.astro';
+import Chip from './Chip.astro';
+import Icon from './Icon.astro';
+import { statusTone } from '../lib/ui';
+import ui from '../data/sections.json';
+
+interface Props {
+  slug: string;
+  title: string;
+  status: string;
+  summary: string;
+  stack: string[];
+  cover?: ImageMetadata;
+  coverAlt?: string;
+  coverNote?: string;
+}
+const { slug, title, status, summary, stack, cover, coverAlt, coverNote } = Astro.props;
+const placeholderAlt = `${ui.projects.coverPrefix} ${title}: ${coverNote ?? ''}`.trim();
+---
+<a class="pcard glass" href={`/proyectos/${slug}`} aria-label={`${title}, ${status}. ${ui.projects.cardAria}`}>
+  <div class="pcard__cover">
+    {cover ? (
+      <Picture
+        src={cover}
+        formats={['avif', 'webp']}
+        widths={[400, 640, 800]}
+        sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw"
+        alt={coverAlt ?? placeholderAlt}
+        class="pcard__img"
+        loading="lazy"
+      />
+    ) : (
+      <div class="pcard__placeholder" role="img" aria-label={placeholderAlt}>
+        <span class="pcard__note">{coverNote}</span>
+      </div>
+    )}
+  </div>
+  <div class="pcard__body">
+    <Badge tone={statusTone[status] ?? 'idea'} dot>{status}</Badge>
+    <h3 class="pcard__title">{title}</h3>
+    <p class="pcard__summary">{summary}</p>
+    <div class="pcard__stack">{stack.map((s) => <Chip variant="stack">{s}</Chip>)}</div>
+    <span class="pcard__more">{ui.projects.detail}<Icon name="arrow-right" size={16} /></span>
+  </div>
+</a>
+
+<style>
+  .pcard {
+    display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-lg); color: var(--color-text);
+    text-decoration: none; box-shadow: var(--shadow-sm); transition: box-shadow var(--motion-hover), background var(--motion-hover);
+  }
+  .pcard:hover { box-shadow: 0 12px 32px rgba(29, 78, 216, 0.16); background: var(--color-surface-solid); color: var(--color-text); }
+  .pcard__cover {
+    margin: 10px 10px 0; aspect-ratio: 16 / 9; border-radius: var(--radius-md); overflow: hidden;
+    border: 1px solid rgba(29, 78, 216, 0.1); background: var(--color-media-stage);
+  }
+  .pcard__cover :global(.pcard__img) { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .pcard__placeholder {
+    width: 100%; height: 100%; display: grid; place-items: center; padding: var(--space-3);
+    background: repeating-linear-gradient(135deg, var(--color-primary-soft) 0 10px, var(--color-bg) 10px 20px);
+  }
+  .pcard__note {
+    font: 500 var(--fs-12) ui-monospace, Menlo, monospace; color: var(--color-primary); background: var(--color-surface-solid);
+    padding: 4px 8px; border-radius: 6px; text-align: center;
+  }
+  .pcard__body { display: flex; flex-direction: column; gap: 10px; padding: 18px 22px 22px; flex: 1; }
+  .pcard__title { font-size: var(--fs-20); font-weight: 700; line-height: 1.25; }
+  .pcard__summary { flex: 1; font-size: var(--fs-16); line-height: 1.55; color: var(--color-text-muted); }
+  .pcard__stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-1); }
+  .pcard__more { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: var(--fs-14); font-weight: 700; color: var(--color-primary); }
+</style>

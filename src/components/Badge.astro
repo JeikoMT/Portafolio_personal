@@ -1,0 +1,22 @@
+---
+import type { Tone } from '../lib/ui';
+
+interface Props { tone: Tone; size?: 'sm' | 'md'; dot?: boolean; }
+const { tone, size = 'sm', dot = false } = Astro.props;
+---
+<span class:list={['badge', `badge--${tone}`, `badge--${size}`]}>
+  {dot && <span class="badge__dot" aria-hidden="true"></span>}<slot />
+</span>
+
+<style>
+  .badge {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 26px; padding: 0 10px;
+    border-radius: var(--radius-pill); font-size: var(--fs-12); font-weight: 700; white-space: nowrap;
+  }
+  .badge--md { min-height: 28px; padding: 0 12px; font-size: var(--fs-14); }
+  .badge__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge--idea { color: var(--status-idea-fg); background: var(--status-idea-bg); }
+  .badge--proto { color: var(--status-proto-fg); background: var(--status-proto-bg); }
+  .badge--dev { color: var(--status-dev-fg); background: var(--status-dev-bg); }
+  .badge--done { color: var(--status-done-fg); background: var(--status-done-bg); }
+</style>

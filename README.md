@@ -12,8 +12,9 @@ La especificación vigente está en [docs/agents-v1.2.md](docs/agents-v1.2.md); 
 | `npm run check` | `astro check` (tipos y esquemas) |
 | `npm run build` | Genera `dist/` |
 | `npm run preview` | Sirve `dist/` |
-| `npm run test:e2e` | Playwright + axe (desde F1) |
-| `npm run test:privacy` | Escaneo de datos sensibles sobre `dist/` (desde F4) |
+| `npm run test:e2e` | Playwright + axe (compila y levanta el preview) |
+| `npm run lighthouse` | Lighthouse CI móvil (rendimiento ≥ 90, accesibilidad ≥ 95) |
+| `npm run test:privacy` | Escaneo de datos sensibles sobre `dist/` (requiere `npm run build`) |
 
 ## Variables de entorno
 

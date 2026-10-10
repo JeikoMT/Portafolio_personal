@@ -1,0 +1,65 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import ToolStrip from '../components/ToolStrip.astro';
+import Chip from '../components/Chip.astro';
+import AiToolCard from '../components/AiToolCard.astro';
+import { getTools } from '../lib/content';
+import ui from '../data/sections.json';
+
+const tools = await getTools();
+const subgroups = (['redes', 'hunting', 'bolsas', 'bases'] as const).map((key) => ({
+  key,
+  label: ui.tools.subgroups[key],
+  items: tools.fuentes.filter((t) => t.subgroup === key),
+}));
+---
+<section id="herramientas" class="container section" aria-labelledby="h-herr">
+  <SectionHeader eyebrow={ui.tools.eyebrow} title={ui.tools.title} titleId="h-herr" />
+  <div class="tools">
+    <ToolStrip label={ui.tools.strips.gestion}>
+      {tools.gestion.map((t) => <Chip>{t.name}</Chip>)}
+    </ToolStrip>
+
+    <ToolStrip label={ui.tools.strips.fuentes}>
+      <div class="groups">
+        {subgroups.map((g) => (
+          <div class="group">
+            <span class="group__label">{g.label}</span>
+            <div class="group__items">{g.items.map((t) => <Chip>{t.name}</Chip>)}</div>
+          </div>
+        ))}
+      </div>
+    </ToolStrip>
+
+    <ToolStrip label={ui.tools.strips['data-ia']}>
+      {tools.dataIa.map((t) => (
+        <span class="level-chip">
+          <span class="level-chip__name">{t.name}</span>
+          <span class="level-chip__level">{t.level}</span>
+        </span>
+      ))}
+    </ToolStrip>
+
+    <ToolStrip label={ui.tools.strips['ia-seleccion']}>
+      {tools.iaSeleccion.map((t) => <AiToolCard name={t.name} description={t.description ?? ''} level={t.level ?? ''} />)}
+    </ToolStrip>
+  </div>
+</section>
+
+<style>
+  .tools { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-8); }
+  .groups { display: flex; gap: 16px 20px; flex-wrap: nowrap; }
+  .group { display: flex; flex-direction: column; gap: 6px; }
+  .group__label { font-size: var(--fs-12); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); }
+  .group__items { display: flex; gap: 6px; flex-wrap: nowrap; }
+  .level-chip {
+    display: inline-flex; flex-direction: column; justify-content: center; min-height: 52px; padding: 6px 14px;
+    border-radius: var(--radius-sm); background: var(--color-surface-solid); border: 1px solid rgba(11, 27, 58, 0.1); white-space: nowrap;
+  }
+  .level-chip__name { font-size: var(--fs-14); font-weight: 600; color: var(--color-text-body); }
+  .level-chip__level { font-size: var(--fs-12); font-weight: 500; color: var(--color-text-muted); }
+
+  @media (min-width: 768px) {
+    .groups, .group__items { flex-wrap: wrap; }
+  }
+</style>

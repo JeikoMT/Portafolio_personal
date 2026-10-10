@@ -1,0 +1,96 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from '../components/Icon.astro';
+import Chip from '../components/Chip.astro';
+import { getProfile } from '../lib/content';
+import ui from '../data/sections.json';
+
+const p = await getProfile();
+const at = p.headline.indexOf(p.gradientWord);
+const before = at >= 0 ? p.headline.slice(0, at) : p.headline;
+const accent = at >= 0 ? p.gradientWord : '';
+const after = at >= 0 ? p.headline.slice(at + p.gradientWord.length) : '';
+---
+<section class="hero container section" aria-labelledby="hero-title">
+  <div class="hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">{p.greeting}</p>
+      <div class="hero__titles">
+        <h1 class="hero__name" id="hero-title">{p.name}</h1>
+        <p class="hero__headline">{before}<span class="gradient-text">{accent}</span>{after}</p>
+      </div>
+      <p class="hero__tagline">{p.tagline}</p>
+      <div class="hero__cta">
+        <a class="btn btn--dark" href="#proyectos">{ui.hero.viewProjects}<Icon name="arrow-right" size={20} /></a>
+        <a class="btn btn--glass" href={p.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          <span class="hero__wa"><Icon name="message-circle" size={20} /></span>{ui.hero.whatsapp}
+        </a>
+      </div>
+      <p class="hero__desc">{p.description}</p>
+    </div>
+
+    <div class="hero__photo-wrap">
+      <span class="hero__glow hero__glow--a" aria-hidden="true"></span>
+      <span class="hero__glow hero__glow--b" aria-hidden="true"></span>
+      <div class="hero__photo glass">
+        <Picture
+          src={p.photo}
+          formats={['avif', 'webp']}
+          widths={[220, 440]}
+          sizes="(min-width: 900px) 440px, 80vw"
+          alt={p.photoAlt}
+          loading="eager"
+          fetchpriority="high"
+          class="hero__img"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__sectors">
+    <p class="hero__sectors-label">{ui.hero.sectors}</p>
+    <ul class="hero__chips">
+      {p.sectors.map((s) => <li><Chip variant="pill">{s}</Chip></li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(32px, 7vw, 88px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(40px, 5vw, 72px); align-items: center; }
+  .hero__text { display: flex; flex-direction: column; gap: var(--space-5); }
+  .hero__titles { display: flex; flex-direction: column; gap: 10px; }
+  .hero__name { font-size: clamp(var(--fs-40), 5vw, var(--fs-56)); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; }
+  .hero__headline { font-size: clamp(var(--fs-24), 2.6vw, var(--fs-32)); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+  .gradient-text { background: var(--color-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero__tagline { font-size: var(--fs-20); line-height: 1.45; font-weight: 600; max-width: 520px; }
+  .hero__desc { font-size: var(--fs-16); line-height: 1.65; color: var(--color-text-muted); max-width: 560px; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); padding-top: var(--space-1); }
+  .hero__wa { color: var(--color-primary); display: inline-flex; }
+
+  .hero__photo-wrap { position: relative; width: 100%; max-width: 440px; margin-inline: auto; }
+  .hero__photo { position: relative; z-index: 1; aspect-ratio: 1 / 1; border-radius: 50%; padding: 10px; box-shadow: var(--shadow-md); }
+  .hero__photo :global(.hero__img) { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .hero__glow { position: absolute; z-index: 0; pointer-events: none; border-radius: 50%; filter: blur(40px); }
+  .hero__glow--a { inset: -8% 20% 30% -12%; background: radial-gradient(closest-side, rgba(29, 78, 216, 0.34), rgba(29, 78, 216, 0)); }
+  .hero__glow--b { inset: 40% -14% -10% 40%; background: radial-gradient(closest-side, rgba(14, 165, 233, 0.3), rgba(14, 165, 233, 0)); }
+
+  .hero__sectors {
+    margin-top: clamp(40px, 6vw, 72px); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
+    padding-top: var(--space-6); border-top: 1px solid var(--color-border);
+  }
+  .hero__sectors-label { font-size: var(--fs-14); font-weight: 700; color: var(--color-text-muted); letter-spacing: 0.04em; }
+  .hero__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  /* CA-01: en móvil los botones van antes de la descripción para que «Ver proyectos» quede visible sin scroll */
+  @media (max-width: 767px) {
+    .hero__cta { order: 4; }
+    .hero__desc { order: 5; }
+  }
+  @media (min-width: 900px) {
+    .hero__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+    .hero__cta { order: 5; }
+    .hero__desc { order: 4; }
+    .hero__photo-wrap { margin-inline: 0 auto; }
+  }
+</style>

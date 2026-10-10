@@ -1,0 +1,33 @@
+{
+  "arquitectura-nube": {
+    "ariaLabel": "Diagrama de arquitectura: la SPA en React habla directo con Supabase (Auth, Postgres con RLS y Storage); para IA y pagos llama a Cloudflare Pages Functions, que conectan con Gemini, Workers AI y Culqi.",
+    "rows": [
+      { "indent": false, "nodes": [
+        { "title": "SPA React", "sub": "Navegador del reclutador" },
+        { "title": "Supabase", "sub": "Auth · Postgres con RLS · Storage" }
+      ] },
+      { "indent": true, "nodes": [
+        { "title": "Cloudflare Pages Functions", "sub": "IA, cobros y webhook" },
+        { "title": "Gemini · Workers AI · Culqi", "sub": "Modelos de IA y pasarela de pago", "accent": true }
+      ] }
+    ]
+  },
+  "arquitectura-local": {
+    "ariaLabel": "Diagrama de arquitectura: el navegador habla con FastAPI en 127.0.0.1; FastAPI usa un gestor de trabajos en memoria que ejecuta ffmpeg, faster-whisper, el post-proceso, NLLB-200 y el exportador; los modelos se descargan una sola vez de Hugging Face.",
+    "rows": [
+      { "indent": false, "nodes": [
+        { "title": "Navegador", "sub": "index.html + app.js" },
+        { "title": "FastAPI", "sub": "API y estáticos · 127.0.0.1" },
+        { "title": "Gestor de trabajos", "sub": "En memoria, un trabajo a la vez", "accent": true }
+      ] },
+      { "indent": true, "compact": true, "nodes": [
+        { "title": "ffprobe / ffmpeg" },
+        { "title": "faster-whisper" },
+        { "title": "Post-proceso" },
+        { "title": "NLLB-200" },
+        { "title": "Exportador" }
+      ] }
+    ],
+    "note": "Los modelos se descargan una sola vez de Hugging Face; después todo funciona sin conexión."
+  }
+}

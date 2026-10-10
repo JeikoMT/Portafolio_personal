@@ -26,4 +26,4 @@ pnpm-debug.log*
 # Imágenes en espera de verificación (Agents: DP-04, DP-09, DP-10). No versionar hasta confirmar.
 src/assets/certificates/
 src/assets/events/
-src/assets/projects/
+.lighthouseci/

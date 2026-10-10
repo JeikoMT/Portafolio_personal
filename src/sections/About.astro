@@ -1,0 +1,51 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import EvolutionChain from '../components/EvolutionChain.astro';
+import { getProfile } from '../lib/content';
+import ui from '../data/sections.json';
+
+const p = await getProfile();
+---
+<section id="sobre-mi" class="container section" aria-labelledby="h-sobre">
+  <div class="about__grid">
+    <div class="about__text">
+      <SectionHeader eyebrow={ui.about.eyebrow} title={ui.about.title} titleId="h-sobre" />
+      <div class="about__paras">
+        {p.about.map((para) => <p>{para}</p>)}
+      </div>
+    </div>
+    <ul class="about__stats glass" aria-label="Cifras">
+      {p.stats.map((s) => (
+        <li class="about__stat">
+          <p class="about__value">{s.value}</p>
+          <p class="about__label">{s.label}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="about__evo solid">
+    <p class="about__evo-intro">{ui.about.evolution}</p>
+    <EvolutionChain steps={p.evolution} />
+  </div>
+</section>
+
+<style>
+  .about__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  .about__text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .about__paras { display: flex; flex-direction: column; gap: 14px; margin-top: var(--space-2); font-size: var(--fs-18); line-height: 1.7; color: var(--color-text-muted); }
+  .about__stats {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: hidden; align-self: center;
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  }
+  .about__stat { padding: clamp(20px, 3vw, 32px) clamp(14px, 2vw, 24px); }
+  .about__stat + .about__stat { border-left: 1px solid var(--color-border); }
+  .about__value { font-size: clamp(var(--fs-32), 4vw, var(--fs-40)); font-weight: 700; line-height: 1; color: var(--color-primary); }
+  .about__label { margin-top: var(--space-2); font-size: var(--fs-14); font-weight: 500; color: var(--color-text-muted); line-height: 1.35; }
+  .about__evo { margin-top: clamp(40px, 5vw, 56px); padding: clamp(20px, 3vw, 32px); border-radius: var(--radius-lg); }
+  .about__evo-intro { font-size: var(--fs-14); font-weight: 600; color: var(--color-text-muted); margin-bottom: var(--space-5); }
+
+  @media (min-width: 900px) {
+    .about__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

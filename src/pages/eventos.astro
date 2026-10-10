@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import EventTile from '../components/EventTile.astro';
+import { getProfile, getEvents } from '../lib/content';
+import ui from '../data/sections.json';
+
+const profile = await getProfile();
+const events = await getEvents();
+---
+<BaseLayout
+  title={`${ui.events.title} · ${profile.name}`}
+  description={`${ui.events.title} de ${profile.name}.`}
+  noindex={events.length === 0}
+>
+  <div class="page">
+    <Navbar variant="events" name={profile.name} subtitle={profile.navSubtitle} />
+    <main class="container ev">
+      <a class="back" href="/"><span aria-hidden="true">←</span>{ui.events.back}</a>
+      <header class="head">
+        <p class="eyebrow">{ui.events.eyebrow}</p>
+        <h1 class="head__title">{ui.events.title}</h1>
+      </header>
+      {events.length > 0 ? (
+        <ul class="gallery">
+          {events.map((e, i) => (
+            <li><EventTile image={e.image} alt={e.alt} focus={e.focus} priority={i < 2} /></li>
+          ))}
+        </ul>
+      ) : (
+        <p class="empty">{ui.events.empty}</p>
+      )}
+    </main>
+    <Footer linkedinUrl={profile.contact.linkedinUrl} backTo={{ label: ui.events.back, href: '/' }} />
+  </div>
+</BaseLayout>
+
+<style>
+  .ev { padding-top: clamp(32px, 5vw, 56px); padding-bottom: clamp(64px, 8vw, 96px); }
+  .back {
+    display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 14px 0 10px; margin-left: -10px;
+    border-radius: var(--radius-pill); font-size: var(--fs-16); font-weight: 600; color: var(--color-primary); text-decoration: none;
+  }
+  .back:hover { background: var(--color-primary-soft); color: var(--color-primary); }
+  .head { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-5); }
+  .head__title { font-size: clamp(var(--fs-40), 5vw, var(--fs-56)); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: var(--space-4); margin-top: var(--space-10); }
+  .empty { margin-top: var(--space-10); font-size: var(--fs-18); color: var(--color-text-muted); }
+</style>

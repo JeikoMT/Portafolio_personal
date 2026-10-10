@@ -1,0 +1,21 @@
+---
+import Badge from './Badge.astro';
+import { levelTone } from '../lib/ui';
+
+interface Props { name: string; description: string; level: string; }
+const { name, description, level } = Astro.props;
+---
+<article class="ai-card">
+  <h3 class="ai-card__title">{name}</h3>
+  <p class="ai-card__desc">{description}</p>
+  <Badge tone={levelTone(level)}>{level}</Badge>
+</article>
+
+<style>
+  .ai-card {
+    flex: none; width: 300px; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4);
+    border-radius: 12px; background: var(--color-surface-solid); border: 1px solid rgba(11, 27, 58, 0.1);
+  }
+  .ai-card__title { font-size: var(--fs-16); font-weight: 700; line-height: 1.3; }
+  .ai-card__desc { flex: 1; font-size: var(--fs-14); line-height: 1.5; color: var(--color-text-muted); }
+</style>

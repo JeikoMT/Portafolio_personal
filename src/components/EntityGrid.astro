@@ -1,0 +1,24 @@
+---
+interface Props { entities: { name: string; fields: string[] }[]; }
+const { entities } = Astro.props;
+---
+<ul class="entities">
+  {entities.map((e) => (
+    <li class="entity">
+      <p class="entity__name">{e.name}</p>
+      <ul>
+        {e.fields.map((f) => <li class="entity__field">{f}</li>)}
+      </ul>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .entities { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-2); }
+  .entity { border-radius: var(--radius-sm); border: 1px solid rgba(29, 78, 216, 0.2); overflow: hidden; background: var(--color-surface-solid); }
+  .entity__name { font-size: var(--fs-14); font-weight: 700; padding: 8px 10px; background: var(--color-primary-soft); color: var(--color-primary); }
+  .entity__field {
+    font: 500 var(--fs-12) ui-monospace, Menlo, monospace; color: var(--color-text-body); padding: 5px 10px;
+    border-top: 1px solid rgba(11, 27, 58, 0.06);
+  }
+</style>

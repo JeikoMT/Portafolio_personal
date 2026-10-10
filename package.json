@@ -12,7 +12,8 @@
     "astro": "astro",
     "check": "astro check",
     "test:e2e": "playwright test",
-    "test:privacy": "node tests/privacy-scan.mjs"
+    "test:privacy": "node tests/privacy-scan.mjs",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "^4.13.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.64.0",
     "typescript": "^6.0.3"
   }

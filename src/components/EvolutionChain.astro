@@ -1,0 +1,44 @@
+---
+interface Props { steps: string[]; }
+const { steps } = Astro.props;
+---
+<ol class="evo">
+  {steps.map((label, i) => (
+    <li class="evo__item">
+      <div class="evo__node">
+        <span class="evo__num" aria-hidden="true">{i + 1}</span>
+        <span class="evo__label">{label}</span>
+      </div>
+      {i < steps.length - 1 && (
+        <span class="evo__link" aria-hidden="true"><span class="evo__plus">+</span></span>
+      )}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .evo { display: flex; flex-direction: column; align-items: flex-start; }
+  .evo__item { display: flex; flex-direction: column; align-items: center; }
+  .evo__node {
+    display: flex; align-items: center; gap: var(--space-3); padding: 10px 16px 10px 10px; white-space: nowrap;
+    border-radius: var(--radius-pill); background: var(--color-surface-solid); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+  }
+  .evo__num {
+    width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--color-primary); color: var(--color-primary-contrast); font-size: var(--fs-14); font-weight: 700;
+  }
+  .evo__label { font-size: var(--fs-16); font-weight: 700; }
+  .evo__link { position: relative; display: flex; align-items: center; justify-content: center; min-width: 28px; min-height: 28px; width: 100%; }
+  .evo__link::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(29, 78, 216, 0.25); }
+  .evo__plus {
+    position: relative; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary); font-size: var(--fs-16); font-weight: 700; line-height: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .evo { flex-direction: row; align-items: center; }
+    .evo__item { flex: 1 1 auto; flex-direction: row; }
+    .evo__item:last-child { flex: none; }
+    .evo__link::before { left: 0; right: 0; top: 50%; bottom: auto; width: auto; height: 1px; }
+  }
+</style>

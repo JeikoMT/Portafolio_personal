@@ -1,0 +1,74 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import CertificateCard from '../components/CertificateCard.astro';
+import CertificateDialog from '../components/CertificateDialog.astro';
+import Icon from '../components/Icon.astro';
+import { getCertificates } from '../lib/content';
+import ui from '../data/sections.json';
+
+const { courses, constancias } = await getCertificates();
+---
+<section id="certificados" class="container section" aria-labelledby="h-cert">
+  <SectionHeader eyebrow={ui.certificates.eyebrow} title={ui.certificates.title} titleId="h-cert" />
+
+  {courses.length > 0 && (
+    <>
+      <h3 class="sub">{ui.certificates.courses}</h3>
+      <ul class="grid">
+        {courses.map((c) => (
+          <li>
+            <CertificateCard
+              title={c.title}
+              issuer={c.issuer}
+              date={c.date}
+              hours={c.hours}
+              category={c.category}
+              image={c.image}
+              imageAlt={c.imageAlt}
+              orientation={c.orientation}
+            />
+          </li>
+        ))}
+      </ul>
+      <CertificateDialog />
+    </>
+  )}
+
+  {constancias.length > 0 && (
+    <>
+      <h3 class="sub sub--spaced">{ui.certificates.constancias}</h3>
+      <ul class="grid grid--compact">
+        {constancias.map((c) => (
+          <li class="constancia solid">
+            <span class="constancia__icon"><Icon name="file-text" size={20} /></span>
+            <div class="constancia__body">
+              <h4 class="constancia__company">{c.company}</h4>
+              <p class="constancia__role">{c.role}</p>
+              <p class="constancia__period">{c.period}</p>
+              <p class="constancia__note">{ui.certificates.onRequest}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</section>
+
+<style>
+  .sub { margin-top: var(--space-8); font-size: var(--fs-20); font-weight: 700; }
+  .sub--spaced { margin-top: var(--space-10); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--space-4); margin-top: var(--space-4); }
+  .grid > li { display: flex; }
+  .grid > li > :global(article) { flex: 1; }
+  .grid--compact { gap: var(--space-3); }
+  .constancia { display: flex; gap: 14px; padding: 18px; border-radius: var(--radius-md); }
+  .constancia__icon {
+    flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary);
+  }
+  .constancia__body { display: flex; flex-direction: column; gap: 3px; }
+  .constancia__company { margin: 0; font-size: var(--fs-16); font-weight: 700; }
+  .constancia__role { font-size: var(--fs-14); color: var(--color-text-body); }
+  .constancia__period { font-size: var(--fs-14); color: var(--color-text-muted); }
+  .constancia__note { margin-top: 6px; font-size: var(--fs-12); font-weight: 600; color: var(--color-text-muted); }
+</style>

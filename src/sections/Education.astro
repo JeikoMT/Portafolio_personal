@@ -1,0 +1,63 @@
+---
+import SectionHeader from '../components/SectionHeader.astro';
+import Badge from '../components/Badge.astro';
+import Icon from '../components/Icon.astro';
+import { getEducation, getLanguages } from '../lib/content';
+import ui from '../data/sections.json';
+
+const education = await getEducation();
+const languages = await getLanguages();
+const tone = (status: string) => (status === 'En curso' ? 'proto' : 'done');
+---
+<section class="container section" aria-labelledby="h-form">
+  <SectionHeader eyebrow={ui.education.eyebrow} title={ui.education.title} titleId="h-form" />
+  <ul class="edu">
+    {education.map((e) => (
+      <li class="edu__card glass">
+        <span class="edu__icon"><Icon name="graduation-cap" size={22} /></span>
+        <div class="edu__body">
+          <h3 class="edu__program">{e.program}</h3>
+          <p class="edu__inst">{e.institution}</p>
+          <p class="edu__period">{e.period}</p>
+          <Badge tone={tone(e.status)}>{e.statusLabel}</Badge>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <div class="lang glass">
+    <span class="lang__title"><Icon name="languages" size={20} />{ui.education.languages}</span>
+    <ul class="lang__list">
+      {languages.map((l) => (
+        <li class="lang__item"><strong>{l.name}</strong><span>· {l.level}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-4); margin-top: var(--space-8); }
+  .edu__card { display: flex; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+  .edu__icon {
+    flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+    background: var(--color-primary-soft); color: var(--color-primary);
+  }
+  .edu__body { display: flex; flex-direction: column; gap: 6px; }
+  .edu__program { font-size: var(--fs-20); font-weight: 700; }
+  .edu__inst { font-size: var(--fs-16); font-weight: 600; color: var(--color-primary); }
+  .edu__period { font-size: var(--fs-14); color: var(--color-text-muted); }
+  .edu__body :global(.badge) { margin-top: var(--space-1); }
+
+  .lang {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin-top: var(--space-4);
+    padding: 16px 20px; border-radius: var(--radius-md);
+  }
+  .lang__title { display: inline-flex; align-items: center; gap: var(--space-2); margin-right: var(--space-2); font-size: var(--fs-16); font-weight: 700; }
+  .lang__title :global(svg) { color: var(--color-primary); }
+  .lang__list { display: contents; }
+  .lang__item {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: var(--radius-pill);
+    background: var(--color-surface-solid); border: 1px solid rgba(11, 27, 58, 0.1); font-size: var(--fs-14);
+  }
+  .lang__item strong { font-weight: 600; }
+  .lang__item span { color: var(--color-text-muted); }
+</style>
